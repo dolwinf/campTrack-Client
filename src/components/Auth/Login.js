@@ -41,9 +41,12 @@ const Login = ({ classes }) => {
         variant="h3"
         paragraph
         noWrap
-        style={{ color: "rgb(66,133,244)" }}
+        style={{
+          color: "#072074",
+          fontFamily: "'Gloria Hallelujah', cursive"
+        }}
       >
-        Let's camp
+        Welcome to campTrack. Let's camp!
       </Typography>
       <GoogleLogin
         clientId="85277232229-ut6025mkmv9nbfr7e39l4kfc056fgm92.apps.googleusercontent.com"
@@ -63,7 +66,8 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "#42dbde"
   }
 };
 
