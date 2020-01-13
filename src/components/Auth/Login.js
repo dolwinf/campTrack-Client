@@ -67,7 +67,7 @@ const styles = {
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#42dbde"
+    backgroundColor: "#b2ff4d"
   }
 };
 
