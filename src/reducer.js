@@ -52,7 +52,7 @@ export default function reducer(state, action) {
       const prevPins = state.pins.filter(pin => pin._id !== newPin._id);
       return {
         ...state,
-        pins: [...prevPins, newPin]
+        pins: [newPin, ...prevPins]
       };
 
     case "SHOW_PIN_INFO":
