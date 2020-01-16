@@ -8,6 +8,7 @@ import ReactMapGL, {
 } from "react-map-gl";
 import PinIcon from "./PinIcon";
 import Blog from "./Blog";
+import Updates from "./Updates";
 import Context from "../context";
 import differenceInMinutes from "date-fns/difference_in_minutes";
 import Button from "@material-ui/core/Button";
@@ -95,6 +96,7 @@ const Map = ({ classes }) => {
   };
   return (
     <div className={classes.root}>
+      <Updates />
       <ReactMapGL
         width="100vw"
         height="calc(100vh - 64px)"
