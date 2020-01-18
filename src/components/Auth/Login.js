@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import { GraphQLClient } from "graphql-request";
 import { GoogleLogin } from "react-google-login";
+import FacebookLogin from "react-facebook-login";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
@@ -10,16 +11,29 @@ import { ME_QUERY } from "../../graphql/queries";
 import { BASE_URL } from "../../client";
 
 const Login = ({ classes }) => {
+  var client;
+  const responseFacebook = async user => {
+    const accessToken = await user.accessToken;
+    console.log(accessToken);
+    client = new GraphQLClient(BASE_URL, {
+      headers: { authorization: accessToken }
+    });
+    const data = await client.request(ME_QUERY);
+    console.log(data);
+    dispatch({ type: "LOGIN_USER", payload: data.me });
+    dispatch({ type: "IS_LOGGED_IN", payload: true });
+  };
+
   const { dispatch } = useContext(Context);
 
   //If user login is successful we will be returned a google user
-  const onSuccess = async googleUser => {
+  const onSuccess = async user => {
     //Grab the token from the google user returned
-    const idToken = googleUser.getAuthResponse().id_token;
+    const idToken = user.getAuthResponse().id_token;
     // console.log({ idToken });
 
     //Instantiate a new GraphQL Client and pass the token as an authorization header.
-    const client = new GraphQLClient(BASE_URL, {
+    client = new GraphQLClient(BASE_URL, {
       headers: { authorization: idToken }
     });
 
@@ -28,7 +42,7 @@ const Login = ({ classes }) => {
     //which we will then use to verify the idToken/header from the backend
     const data = await client.request(ME_QUERY);
     dispatch({ type: "LOGIN_USER", payload: data.me });
-    dispatch({ type: "IS_LOGGED_IN", payload: googleUser.isSignedIn() });
+    dispatch({ type: "IS_LOGGED_IN", payload: true });
   };
 
   const onFailure = err => {
@@ -36,6 +50,14 @@ const Login = ({ classes }) => {
   };
   return (
     <div className={classes.root}>
+      {/* <FacebookLogin
+        appId="628566151239094"
+        autoLoad={true}
+        fields="name,email,picture"
+        callback={responseFacebook}
+        cssClass="my-facebook-button-class"
+        icon="fa-facebook"
+      /> */}
       <Typography
         component="h1"
         variant="h3"
