@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Context from "../context";
 import { Paper } from "@material-ui/core";
-
+import { Marker } from "react-map-gl";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -15,6 +15,9 @@ const Updates = ({ classes }) => {
   const { state } = useContext(Context);
   const { pins } = state;
 
+  const handleClick = pin => {
+    console.log("Clicked pin", pin._id);
+  };
   return (
     <Paper className={classes.root}>
       <List style={{ maxWidth: "100%" }}>
@@ -42,6 +45,7 @@ const Updates = ({ classes }) => {
                   <PinDropIcon />
 
                   <div
+                    onClick={e => handleClick(pin)}
                     style={{
                       color: "darkblue",
                       fontFamily: "'Nunito', sans-serif"

@@ -5,7 +5,17 @@ const Context = createContext({
   isAuth: false,
   draft: null,
   pins: [],
-  currentPin: null
+  currentPin: null,
+
+  viewport: {
+    latitude: -33.86882,
+    longitude: 151.20929,
+    zoom: 12
+  },
+  userPosition: {
+    latitude: -33.86882,
+    longitude: 151.20929
+  }
 });
 
 export default Context;

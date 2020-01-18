@@ -19,11 +19,11 @@ import { GET_PINS_QUERY } from "../graphql/queries";
 import { DELETE_PIN_MUTATION } from "../graphql/mutations";
 import { useClient } from "../client";
 
-const INITIAL_VIEWPORT = {
-  latitude: 37.7577,
-  longitude: -122.4376,
-  zoom: 13
-};
+// const INITIAL_VIEWPORT = {
+//   latitude: 37.7577,
+//   longitude: -122.4376,
+//   zoom: 13
+// };
 const Map = ({ classes }) => {
   const client = useClient();
   useEffect(() => {
@@ -31,8 +31,11 @@ const Map = ({ classes }) => {
   }, []);
 
   const { state, dispatch } = useContext(Context);
-  const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
-  const [userPosition, setUserPosition] = useState(null);
+  const { viewport, userPosition } = state;
+
+  console.log("viewport", viewport);
+  // const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
+  // const [userPosition, setUserPosition] = useState(null);
 
   useEffect(() => {
     getUserPosition();
@@ -48,17 +51,19 @@ const Map = ({ classes }) => {
   const getPins = async () => {
     const { getPins } = await client.request(GET_PINS_QUERY);
     dispatch({ type: "GET_PINS", payload: getPins });
-    console.log(getPins);
   };
   const getUserPosition = () => {
     //check window for geolocation that comes from navigator
     if ("geolocation" in navigator) {
       //method provided by browser api to get user's current position, which we can then destructure to get lat and long
       navigator.geolocation.getCurrentPosition(position => {
+        console.log("Initial position", position);
         const { latitude, longitude } = position.coords;
         //then set the viewport and userPosition
-        setViewport({ ...viewport, latitude, longitude });
-        setUserPosition({ latitude, longitude });
+        // setViewport({ ...viewport, latitude, longitude });
+        dispatch({ type: "SET_VIEWPORT", payload: position.coords });
+        dispatch({ type: "SET_USERPOSITION", payload: position.coords });
+        // setUserPosition({ latitude, longitude });
       });
     }
   };
@@ -102,7 +107,9 @@ const Map = ({ classes }) => {
         height="calc(100vh - 64px)"
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxApiAccessToken="pk.eyJ1IjoiZG9sd2luIiwiYSI6ImNrNGY3cW02YjBiOXgza21sejY4ajVuNGUifQ.fhfOUbbpbZ-wOXW9ZTqu7g"
-        onViewportChange={newViewport => setViewport(newViewport)}
+        onViewportChange={newViewport =>
+          dispatch({ type: "SET_VIEWPORT", payload: newViewport })
+        }
         {...viewport}
         onClick={handleMapClick}
       >

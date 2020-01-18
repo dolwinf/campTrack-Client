@@ -84,6 +84,26 @@ export default function reducer(state, action) {
         currentPin: updatedCurrentPin
       };
 
+    case "SET_VIEWPORT":
+      console.log("act", action);
+      return {
+        ...state,
+        viewport: {
+          latitude: action.payload.latitude,
+          longitude: action.payload.longitude,
+          zoom: action.payload.zoom ? action.payload.zoom : state.viewport.zoom
+        }
+      };
+
+    case "SET_USERPOSITION":
+      return {
+        ...state,
+        userPosition: {
+          latitude: action.payload.latitude,
+          longitude: action.payload.longitude
+        }
+      };
+
     default:
       return state;
   }
