@@ -12,10 +12,14 @@ import Typography from "@material-ui/core/Typography";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 
 const Updates = ({ classes }) => {
-  const { state } = useContext(Context);
-  const { pins } = state;
+  const { state, dispatch } = useContext(Context);
+  const { pins, currentPin } = state;
 
   const handleClick = pin => {
+    dispatch({ type: "SET_VIEWPORT", payload: pin });
+    dispatch({ type: "SET_USERPOSITION", payload: pin });
+    dispatch({ type: "SHOW_PIN_INFO", payload: pin });
+    console.log(pin);
     console.log("Clicked pin", pin._id);
   };
   return (

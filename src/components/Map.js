@@ -58,7 +58,7 @@ const Map = ({ classes }) => {
       //method provided by browser api to get user's current position, which we can then destructure to get lat and long
       navigator.geolocation.getCurrentPosition(position => {
         console.log("Initial position", position);
-        const { latitude, longitude } = position.coords;
+
         //then set the viewport and userPosition
         // setViewport({ ...viewport, latitude, longitude });
         dispatch({ type: "SET_VIEWPORT", payload: position.coords });
