@@ -10,6 +10,9 @@ import Context from "../../context";
 import { ME_QUERY } from "../../graphql/queries";
 import { BASE_URL } from "../../client";
 
+import VideoBg from "reactjs-videobg";
+import mp4 from "../../../src/videos/campTrack.mp4";
+
 const Login = ({ classes }) => {
   var client;
   const responseFacebook = async user => {
@@ -58,7 +61,11 @@ const Login = ({ classes }) => {
         cssClass="my-facebook-button-class"
         icon="fa-facebook"
       /> */}
-      <Typography
+      <VideoBg>
+        <VideoBg.Source src={mp4} type="video/mp4" />
+      </VideoBg>
+
+      {/* <Typography
         component="h1"
         variant="h3"
         paragraph
@@ -67,29 +74,34 @@ const Login = ({ classes }) => {
           color: "#072074",
           fontFamily: "'Gloria Hallelujah', cursive"
         }}
-      >
-        Welcome to campTrack. Let's camp!
-      </Typography>
-      <GoogleLogin
-        clientId="85277232229-ut6025mkmv9nbfr7e39l4kfc056fgm92.apps.googleusercontent.com"
-        onSuccess={onSuccess}
-        isSignedIn={true}
-        onFailure={onFailure}
-        theme="dark"
-        buttonText="Login with Google"
-      />
+      ></Typography> */}
+      <div className={classes.button}>
+        <GoogleLogin
+          clientId="85277232229-ut6025mkmv9nbfr7e39l4kfc056fgm92.apps.googleusercontent.com"
+          onSuccess={onSuccess}
+          isSignedIn={true}
+          onFailure={onFailure}
+          theme="dark"
+          buttonText="Login with Google"
+        />
+      </div>
     </div>
   );
 };
 
 const styles = {
+  button: {
+    justifyContent: "center",
+    marginLeft: "7%",
+    marginTop: "10%"
+  },
   root: {
     height: "100vh",
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#b2ff4d"
+    alignItems: "center"
+    // backgroundColor: "#b2ff4d"
   }
 };
 
