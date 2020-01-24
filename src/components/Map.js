@@ -171,9 +171,9 @@ const Map = ({ classes }) => {
               alt={popup.title}
             />
             <div className={classes.popupTab}>
-              <Typography>
+              {/* <Typography>
                 {popup.latitude.toFixed(6)}, {popup.longitude.toFixed(6)}
-              </Typography>
+              </Typography> */}
               {isThisUser() && (
                 <Button onClick={() => handleDeletePin(popup)}>
                   <DeleteIcon className={classes.deleteIcon} />

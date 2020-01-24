@@ -15,17 +15,17 @@ import mp4 from "../../../src/videos/campTrack.mp4";
 
 const Login = ({ classes }) => {
   var client;
-  const responseFacebook = async user => {
-    const accessToken = await user.accessToken;
-    console.log(accessToken);
-    client = new GraphQLClient(BASE_URL, {
-      headers: { authorization: accessToken }
-    });
-    const data = await client.request(ME_QUERY);
-    console.log(data);
-    dispatch({ type: "LOGIN_USER", payload: data.me });
-    dispatch({ type: "IS_LOGGED_IN", payload: true });
-  };
+  // const responseFacebook = async user => {
+  //   const accessToken = await user.accessToken;
+  //   console.log(accessToken);
+  //   client = new GraphQLClient(BASE_URL, {
+  //     headers: { authorization: accessToken }
+  //   });
+  //   const data = await client.request(ME_QUERY);
+  //   console.log(data);
+  //   dispatch({ type: "LOGIN_USER", payload: data.me });
+  //   dispatch({ type: "IS_LOGGED_IN", payload: true });
+  // };
 
   const { dispatch } = useContext(Context);
 

@@ -4,6 +4,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import LandscapeIcon from "@material-ui/icons/Landscape";
 import Typography from "@material-ui/core/Typography";
+import { Menu, MenuItem } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
 import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
 
 import Context from "../context";
@@ -21,13 +24,15 @@ const Header = ({ classes }) => {
           <div className={classes.grow}>
             <LandscapeIcon className={classes.icon} />
             <Typography
-              className={mobileSize ? classes.mobile : ""}
+              className={classes.title}
               component="h1"
               variant="h6"
               color="inherit"
               noWrap
             >
-              campTrack
+              <a href="/" style={{ textDecoration: "none", color: "inherit" }}>
+                campTrack
+              </a>
             </Typography>
           </div>
 
@@ -40,7 +45,7 @@ const Header = ({ classes }) => {
                 alt={currentUser.name}
               />
               <Typography
-                className={mobileSize ? classes.mobile : ""}
+                className={classes.userName}
                 variant="h5"
                 color="inherit"
                 noWrap
@@ -59,6 +64,16 @@ const Header = ({ classes }) => {
 };
 
 const styles = theme => ({
+  none: {
+    textDecoration: "none"
+  },
+  title: {
+    fontFamily: "'Russo One', sans-serif"
+  },
+  userName: {
+    fontFamily: "'Yanone Kaffeesatz', sans-serif",
+    fontSize: "30px"
+  },
   root: {
     flexGrow: 1
   },

@@ -69,78 +69,97 @@ const CreatePin = ({ classes }) => {
   };
 
   return (
-    <form className={classes.form}>
-      <Typography
-        className={classes.alignCenter}
-        component="h2"
-        variant="h4"
-        color="secondary"
-      >
-        <LandscapeIcon className={classes.iconLarge} /> Camp location
-      </Typography>
-      <div>
-        <TextField
-          name="title"
-          label="title"
-          placeholder="Add a title"
-          onChange={e => setTitle(e.target.value)}
-        />
-        <input
-          accept="image/*"
-          id="image"
-          type="file"
-          className={classes.input}
-          onChange={e => setImage(e.target.files[0])}
-        />
-        <label htmlFor="image">
-          <Button component="span" size="small" className={classes.Button}>
-            <AddAPhotoIcon />
-          </Button>
-        </label>
-      </div>
-
-      <div className={classes.contentField}>
-        <TextField
-          name="content"
-          label="content"
-          multiline
-          rows="6"
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          onChange={e => setContent(e.target.value)}
-        />
-      </div>
-      <div>
-        <Button
-          className={classes.Button}
-          variant="contained"
-          color="primary"
-          onClick={handleDeleteDraft}
-        >
-          <ClearIcon className={classes.leftIcon} />
-          Delete
-        </Button>
-        <Button
-          type="submit"
-          className={classes.Button}
-          variant="contained"
+    <div>
+      <form className={classes.form}>
+        <Typography
+          className={classes.alignCenter}
+          component="h2"
+          variant="h4"
           color="secondary"
-          disabled={!title.trim() || !content.trim() || !image || submit}
-          onClick={handleSubmit}
         >
-          Submit
-          <SaveIcon className={classes.rightIcon} />
-        </Button>
-      </div>
-    </form>
+          <LandscapeIcon className={classes.iconLarge} /> Camp location
+        </Typography>
+        <div>
+          <TextField
+            name="title"
+            label="title"
+            placeholder="Add a title"
+            onChange={e => setTitle(e.target.value)}
+          />
+          <input
+            accept="image/*"
+            id="image"
+            type="file"
+            className={classes.input}
+            onChange={e => setImage(e.target.files[0])}
+          />
+          <label htmlFor="image">
+            <Button component="span" size="small" className={classes.Button}>
+              <AddAPhotoIcon />
+            </Button>
+          </label>
+        </div>
+
+        <div className={classes.contentField}>
+          <TextField
+            name="content"
+            label="content"
+            multiline
+            rows="6"
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            onChange={e => setContent(e.target.value)}
+          />
+        </div>
+        <div>
+          <Button
+            className={classes.Button}
+            variant="contained"
+            color="primary"
+            onClick={handleDeleteDraft}
+          >
+            <ClearIcon className={classes.leftIcon} />
+            Delete
+          </Button>
+          <Button
+            type="submit"
+            className={classes.Button}
+            variant="contained"
+            color="secondary"
+            disabled={!title.trim() || !content.trim() || !image || submit}
+            onClick={handleSubmit}
+          >
+            Submit
+            <SaveIcon className={classes.rightIcon} />
+          </Button>
+        </div>
+        <Typography className={classes.note}>
+          Awesome! Now that you've selected your location, add a title, a brief
+          description of the place and a picture
+        </Typography>
+      </form>
+    </div>
   );
 };
 
 const styles = theme => ({
-  form: {
+  note: {
+    fontFamily: "'Russo One', sans-serif",
+    fontSize: "23px",
     display: "flex",
     justifyContent: "center",
+    marginTop: "20%",
+    marginLeft: "10%",
+    marginRight: "2%",
+    alignItems: "center",
+    flexDirection: "column",
+    color: "#D54B58"
+  },
+  form: {
+    display: "flex",
+    justifyContent: "top-center",
+    marginTop: "5%",
     alignItems: "center",
     flexDirection: "column",
     paddingBottom: theme.spacing.unit

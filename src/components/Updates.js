@@ -46,7 +46,7 @@ const Updates = ({ classes }) => {
           ? pins.map((pin, i) => (
               <Typography>
                 <ListItem key={i} alignItems="center" divider="true">
-                  <PinDropIcon />
+                  <PinDropIcon style={{ color: "#EC218D" }} />
 
                   <div
                     onClick={e => handleClick(pin)}
